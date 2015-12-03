@@ -7,6 +7,7 @@ confDir = $confDir ||= File.expand_path("~/.homestead")
 homesteadYamlPath = confDir + "/Homestead.yaml"
 homesteadJsonPath = confDir + "/Homestead.json"
 afterScriptPath = confDir + "/after.sh"
+mongoElasticScriptPath = confDir + "/install-mongo-elastic.sh"
 aliasesPath = confDir + "/aliases"
 
 require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
@@ -20,6 +21,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         Homestead.configure(config, YAML::load(File.read(homesteadYamlPath)))
     elsif File.exists? homesteadJsonPath then
         Homestead.configure(config, JSON.parse(File.read(homesteadJsonPath)))
+    end
+
+    if File.exists? mongoElasticScriptPath then
+        config.vm.provision "shell", path: mongoElasticScriptPath
     end
 
     if File.exists? afterScriptPath then

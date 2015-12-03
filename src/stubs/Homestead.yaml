@@ -17,8 +17,8 @@ sites:
     - map: homestead.app
       to: /home/vagrant/Code/Laravel/public
 
-databases:
-    - homestead
+# databases:
+#     - homestead
 
 variables:
     - key: 'APP_ENV'
@@ -38,3 +38,9 @@ variables:
 #     - send: 7777
 #       to: 777
 #       protocol: udp
+# MongoDB
+#     - send: 27017
+#       to: 27017
+# Elasticsearch
+#     - send: 9200
+#       to: 9200

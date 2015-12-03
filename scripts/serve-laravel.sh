@@ -25,6 +25,10 @@ block="server {
     charset utf-8;
 
     location / {
+        try_files \$uri \$uri/ /index.html?\$query_string;
+    }
+
+    location ~* ^/(admin|api|_debugbar|swagger\.json) {
         try_files \$uri \$uri/ /index.php?\$query_string;
     }
 
